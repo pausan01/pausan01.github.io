@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>COMPONENTS OF A COMPUTER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Css/w3.css">
+  <link rel="stylesheet" href="Css/common_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="Css/page1_style.css">
+</head>
+
+<body>
+  <header>
+
+    <nav>
+      <ul class="menu_movil menu_drop">
+        <li>
+          <a href="#menu" class="size_icon">
+            <i class="fa fa-sort-desc"></i>
+          </a>
+          <ul>
+            <li>
+              <a href="index.html">INDEX</a>
+            </li>
+            <li>
+              <a href="page1.html">COMPONENTS OF A COMPUTER</a>
+            </li>
+            <li>
+              <a href="page2.html">REVOLUTIONARY COMPANIES</a>
+            </li>
+            <li>
+              <a href="gallery.html">GALLERY</a>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+
+      <ul class="menu_pc menu_drop">
+        <li class="col-4 col-s-4">
+          <a href="index.html">INDEX</a>
+        </li>
+        <li class="col-4 col-s-4">
+          <a href="page1.html">COMPONENTS OF A COMPUTER</a>
+        </li>
+        <li class="col-4 col-s-4">
+          <a href="page2.html">REVOLUTIONARY COMPANIES</a>
+        </li>
+        <li class="col-4 col-s-4">
+          <a href="gallery.html">GALLERY</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+    <main>
+        <button id="showXmlButton">Show XML</button>
+        <table id="xmlTable"></table>
+
+        <script>
+          // Function to display XML as a table
+          function showXmlAsTable() {
+            var xmlString = `<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE computer_components [
+<!ELEMENT computer_components (component)+>
+<!ELEMENT component (name, brand, model)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT brand (#PCDATA)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+
+<!ATTLIST component id ID #IMPLIED>
+]>
+        <computer_components>
+          <component>
+            <name>Processor</name>
+            <brand>Intel</brand>
+            <model>Core i7</model>
+          </component>
+          <component>
+            <name>Graphics Card</name>
+            <brand>NVIDIA</brand>
+            <model>GeForce RTX 3080</model>
+          </component>
+          <component>
+            <name>Memory</name>
+            <brand>Corsair</brand>
+            <model>Vengeance RGB Pro</model>
+          </component>
+          <component>
+            <name>Storage</name>
+            <brand>Samsung</brand>
+            <model>970 EVO Plus</model>
+          </component>
+          <component>
+            <name>Motherboard</name>
+            <brand>ASUS</brand>
+            <model>ROG Strix Z590-E Gaming</model>
+          </component>
+          
+        </computer_components>`;
+
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            var xmlTable = document.getElementById("xmlTable");
+
+            // Clear the table
+            xmlTable.innerHTML = "";
+
+            // Creating column headers
+            var headerRow = document.createElement("tr");
+            var headers = Array.from(xmlDoc.getElementsByTagName("component")[0].children);
+            headers.forEach(function (header) {
+              var headerCell = document.createElement("th");
+              headerCell.textContent = header.nodeName;
+              headerRow.appendChild(headerCell);
+            });
+            xmlTable.appendChild(headerRow);
+
+            // Adding data rows
+            var components = xmlDoc.getElementsByTagName("component");
+            Array.from(components).forEach(function (component) {
+              var dataRow = document.createElement("tr");
+              var componentData = Array.from(component.children);
+              componentData.forEach(function (data) {
+                var dataCell = document.createElement("td");
+                dataCell.textContent = data.textContent;
+                dataRow.appendChild(dataCell);
+              });
+              xmlTable.appendChild(dataRow);
+            });
+          }
+
+          // Click event on the "Show XML" button
+          var showXmlButton = document.getElementById("showXmlButton");
+          showXmlButton.addEventListener("click", showXmlAsTable);
+        </script>
+   
+    </main>
+    <footer>
+      <a href="#" class="bookmark">
+        <span class="bookmark">
+          <img src="Images/Page2/arrow.png" class="bookmark-img" alt="bookmark">
+        </span>
+      </a>
+    </footer>
+  </body>
+
+</html>
