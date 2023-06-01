@@ -1,0 +1,148 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+/* Header styles */
+header {
+    background-color: rgba(0, 0, 0, 0.678);
+    color: white;
+    padding: 30px;
+    background-image: url("../Images/Index/header1.jpg"); 
+   
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
+         }
+
+         h1 {
+            font-size: 36px;
+            margin: 0;
+               }
+                   
+           img {
+            max-width: 100%;
+           }
+           nav ul {
+            display:flex;
+            flex-direction: row;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            
+            }
+           nav li {
+                 display: inline-block;
+                 margin-right: 20px;
+                }
+        
+            .size_icon{
+             font-size: 25px;
+             
+            }
+            .menu_drop>li>a{
+             background-color: rgba(255, 255, 255, 0.507);
+             color: black;
+             padding: 10px;
+             display: block;
+             text-decoration: none;
+             min-width: 50px;
+             text-align:center;
+            }
+            /*Nested list*/
+            .menu_drop>li>ul>li>a{
+             background-color: #333;
+             color: white;
+             padding: 10px;
+             display: block;
+             text-decoration: none;
+             min-width: 100px;
+             text-align:center;
+            }
+            /*List and nested list*/
+            .menu_drop li>a:hover{
+             color: black;
+             background-color: lightgrey;
+            }
+            /*By default the nested list is hidden*/
+            .menu_drop>li>ul{
+             display: none;
+             position: absolute; /*the dropdown is over the content*/
+            }
+            /*When you (hovering) roll the cursor over the item, the drop-down-menu appears*/
+            .menu_drop>li:hover> ul {
+             display:flex;
+             flex-direction: column;
+            }
+             .menu_pc {
+            display: none;
+             }
+             main div{ 
+                display: flex; 
+                flex-wrap:wrap; 
+            }    
+
+            /*Footer, Bookmark*/
+
+            .bookmark {
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                font-size: 18px;
+                border: none;
+                outline: none;
+                background-color: rgb(70, 170, 252);;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 4px;
+              }
+            .bookmark-img{
+                height: 30px;
+                width: 30px;
+               
+              }
+
+               /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+        }
+        @media only screen and (min-width: 400px) {
+        /* For tablets: */
+        .col-s-1 {width: 8.33%;}
+        .col-s-2 {width: 16.66%;}
+        .col-s-3 {width: 25%;}
+        .col-s-4 {width: 33.33%;}
+        .col-s-5 {width: 41.66%;}
+        .col-s-6 {width: 50%;}
+        .col-s-7 {width: 58.33%;}
+        .col-s-8 {width: 66.66%;}
+        .col-s-9 {width: 75%;}
+        .col-s-10 {width: 83.33%;}
+        .col-s-11 {width: 91.66%;}
+        .col-s-12 {width: 100%;}
+        
+         .menu_movil {
+        display: none;
+         }
+         .menu_pc {
+        display: flex;
+         }
+        }
+        @media only screen and (min-width: 1000px) {
+        /* For desktop: */
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+        }

@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+
+}
+
+/* Styles to add spacing */
+p {
+    margin-bottom: 20px;
+}
+
+.p2 {
+    margin-top: 10px;
+}
+
+ul {
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.correction1 {
+    margin-left: 2%;
+    margin-top: 2%;
+}
