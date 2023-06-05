@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>COMPONENTS OF A COMPUTER</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,97 +53,44 @@
       </ul>
     </nav>
   </header>
-    <main>
-        <button id="showXmlButton">Show XML</button>
-        <table id="xmlTable"></table>
-
-        <script>
-          // Function to display XML as a table
-          function showXmlAsTable() {
-            var xmlString = `<?xml version="1.0" encoding="UTF-8"?>
-  <!DOCTYPE computer_components [
-<!ELEMENT computer_components (component)+>
-<!ELEMENT component (name, brand, model)>
-<!ELEMENT name (#PCDATA)>
-<!ELEMENT brand (#PCDATA)>
-<!ELEMENT model (#PCDATA)>
-<!ELEMENT version (#PCDATA)>
-
-<!ATTLIST component id ID #IMPLIED>
-]>
-        <computer_components>
-          <component>
-            <name>Processor</name>
-            <brand>Intel</brand>
-            <model>Core i7</model>
-          </component>
-          <component>
-            <name>Graphics Card</name>
-            <brand>NVIDIA</brand>
-            <model>GeForce RTX 3080</model>
-          </component>
-          <component>
-            <name>Memory</name>
-            <brand>Corsair</brand>
-            <model>Vengeance RGB Pro</model>
-          </component>
-          <component>
-            <name>Storage</name>
-            <brand>Samsung</brand>
-            <model>970 EVO Plus</model>
-          </component>
-          <component>
-            <name>Motherboard</name>
-            <brand>ASUS</brand>
-            <model>ROG Strix Z590-E Gaming</model>
-          </component>
-          
-        </computer_components>`;
-
-            var parser = new DOMParser();
-            var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            var xmlTable = document.getElementById("xmlTable");
-
-            // Clear the table
-            xmlTable.innerHTML = "";
-
-            // Creating column headers
-            var headerRow = document.createElement("tr");
-            var headers = Array.from(xmlDoc.getElementsByTagName("component")[0].children);
-            headers.forEach(function (header) {
-              var headerCell = document.createElement("th");
-              headerCell.textContent = header.nodeName;
-              headerRow.appendChild(headerCell);
-            });
-            xmlTable.appendChild(headerRow);
-
-            // Adding data rows
-            var components = xmlDoc.getElementsByTagName("component");
-            Array.from(components).forEach(function (component) {
-              var dataRow = document.createElement("tr");
-              var componentData = Array.from(component.children);
-              componentData.forEach(function (data) {
-                var dataCell = document.createElement("td");
-                dataCell.textContent = data.textContent;
-                dataRow.appendChild(dataCell);
-              });
-              xmlTable.appendChild(dataRow);
-            });
+  <main>
+    <h1>XML Table Viewer</h1>
+    <br>
+    <button onclick="loadXML()">Load XML</button>
+    <div id="xmlTable"></div>
+    <script>
+      function loadXML() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            displayTable(this.responseXML);
           }
+        };
+        xhttp.open("GET", "computer_components.xml", true);
+        xhttp.send();
+      }
 
-          // Click event on the "Show XML" button
-          var showXmlButton = document.getElementById("showXmlButton");
-          showXmlButton.addEventListener("click", showXmlAsTable);
-        </script>
-   
-    </main>
-    <footer>
-      <a href="#" class="bookmark">
-        <span class="bookmark">
-          <img src="Images/Page2/arrow.png" class="bookmark-img" alt="bookmark">
-        </span>
-      </a>
-    </footer>
-  </body>
+      function displayTable(xml) {
+        var table = "<table border='1'>";
+        var components = xml.getElementsByTagName("component");
+        for (var i = 0; i < components.length; i++) {
+          var name = components[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+          var brand = components[i].getElementsByTagName("brand")[0].childNodes[0].nodeValue;
+          var model = components[i].getElementsByTagName("model")[0].childNodes[0].nodeValue;
+          table += "<tr><td>" + name + "</td><td>" + brand + "</td><td>" + model + "</td></tr>";
+        }
+        table += "</table>";
+        document.getElementById("xmlTable").innerHTML = table;
+      }
+    </script>
+  </main>
+  <footer>
+    <a href="#" class="bookmark">
+      <span class="bookmark">
+        <img src="Images/Page2/arrow.png" class="bookmark-img" alt="bookmark">
+      </span>
+    </a>
+  </footer>
+</body>
 
 </html>
